@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view.
 
 //    self.modalCenterOffset = CGPointMake(-10.0, 40.0);
-    self.modalFrameInsets = UIEdgeInsetsMake(10, 20, 10, 4);
+//    self.modalFrameInsets = UIEdgeInsetsMake(10, 20, 10, 4);
 }
 
 - (void)didReceiveMemoryWarning
