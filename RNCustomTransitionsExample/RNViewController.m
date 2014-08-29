@@ -6,12 +6,11 @@
 //  Copyright (c) 2014 Rob Nadin. All rights reserved.
 //
 
-#import "RNFadeTransition.h"
-
+#import "RNZoomSegue.h"
 #import "RNViewController.h"
 
 @interface RNViewController ()
-
+@property (nonatomic) UIButton *selectedButton;
 @end
 
 
@@ -38,9 +37,25 @@
 
 #pragma mark - Navigation
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    self.selectedButton = sender;
+
+    if ([segue isKindOfClass:RNZoomSegue.class]) {
+        [(RNZoomSegue *)segue setDelegate:self];
+    }
+}
+
 - (IBAction)unwindToRoot:(UIStoryboardSegue *)sender
 {
 //    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - RNZoomTransitionDelegate
+
+- (CGPoint)zoomOrigin
+{
+    return self.selectedButton.center;
 }
 
 @end

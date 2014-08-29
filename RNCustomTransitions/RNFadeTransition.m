@@ -15,26 +15,25 @@
 - (void)animateFromView:(UIView *)fromView toView:(UIView *)toView inContainerView:(UIView *)containerView completionBlock:(void (^)(BOOL))completionBlock
 {
     UIViewTintAdjustmentMode tintAdjustmentMode;
-    CGFloat fromOpacity = 0.0;
-    CGFloat toOpacity = 1.0;
+    UIView *presentingView = (self.reverse) ? toView : fromView;
+    UIView *presentedView = (self.reverse) ? fromView : toView;
+    presentedView.alpha = self.reverse;
 
     if (self.reverse) {
         tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
-        [containerView insertSubview:toView belowSubview:fromView];
     } else {
-        fromOpacity = 0.5;
         tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
-        toView.alpha = fromOpacity;
-        [containerView insertSubview:toView aboveSubview:fromView];
     }
+
+    [containerView addSubview:presentedView];
 
     [UIView animateWithDuration:self.duration
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         fromView.layer.opacity = fromOpacity;
-                         fromView.tintAdjustmentMode = tintAdjustmentMode;
-                         toView.alpha = toOpacity;
+                         presentingView.alpha = (self.reverse) ? 1.0 : 0.5;
+                         presentingView.tintAdjustmentMode = tintAdjustmentMode;
+                         presentedView.alpha = !self.reverse;
                      } completion:^(BOOL finished) {
                          completionBlock(finished);
                      }

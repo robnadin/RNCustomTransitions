@@ -28,6 +28,10 @@
 		AB3E7641196BDE69005C89D8 /* UIViewController+RNCustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E763D196BDE69005C89D8 /* UIViewController+RNCustomTransitions.m */; };
 		AB553EC9196ECF770093729F /* UIImage+RNSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = AB553EC8196ECF770093729F /* UIImage+RNSnapshot.m */; };
 		ABA9ECEE19ADE111009C7461 /* RNSlideTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ECED19ADE111009C7461 /* RNSlideTransition.m */; };
+		ABA9ECF119ADEE53009C7461 /* RNFadeSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ECF019ADEE53009C7461 /* RNFadeSegue.m */; };
+		ABA9ECF519ADEE6E009C7461 /* RNSlideUpSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ECF419ADEE6E009C7461 /* RNSlideUpSegue.m */; };
+		ABA9ED0D19AF7960009C7461 /* RNZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ED0C19AF7960009C7461 /* RNZoomTransition.m */; };
+		ABA9ED1019AF79BB009C7461 /* RNZoomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ED0F19AF79BB009C7461 /* RNZoomSegue.m */; };
 		ABD5992E196BE10D00418F42 /* RNCustomTransitionSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD5992D196BE10D00418F42 /* RNCustomTransitionSegue.m */; };
 		ABD59931196BE47D00418F42 /* RNFadeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD59930196BE47D00418F42 /* RNFadeTransition.m */; };
 		ABD59934196BF90500418F42 /* RNTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD59933196BF90500418F42 /* RNTransition.m */; };
@@ -77,6 +81,14 @@
 		AB553EC8196ECF770093729F /* UIImage+RNSnapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RNSnapshot.m"; sourceTree = "<group>"; };
 		ABA9ECEC19ADE111009C7461 /* RNSlideTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNSlideTransition.h; sourceTree = "<group>"; };
 		ABA9ECED19ADE111009C7461 /* RNSlideTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNSlideTransition.m; sourceTree = "<group>"; };
+		ABA9ECEF19ADEE53009C7461 /* RNFadeSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFadeSegue.h; sourceTree = "<group>"; };
+		ABA9ECF019ADEE53009C7461 /* RNFadeSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNFadeSegue.m; sourceTree = "<group>"; };
+		ABA9ECF319ADEE6E009C7461 /* RNSlideUpSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNSlideUpSegue.h; sourceTree = "<group>"; };
+		ABA9ECF419ADEE6E009C7461 /* RNSlideUpSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNSlideUpSegue.m; sourceTree = "<group>"; };
+		ABA9ED0B19AF7960009C7461 /* RNZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNZoomTransition.h; sourceTree = "<group>"; };
+		ABA9ED0C19AF7960009C7461 /* RNZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNZoomTransition.m; sourceTree = "<group>"; };
+		ABA9ED0E19AF79BB009C7461 /* RNZoomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNZoomSegue.h; sourceTree = "<group>"; };
+		ABA9ED0F19AF79BB009C7461 /* RNZoomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNZoomSegue.m; sourceTree = "<group>"; };
 		ABD5992C196BE10D00418F42 /* RNCustomTransitionSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCustomTransitionSegue.h; sourceTree = "<group>"; };
 		ABD5992D196BE10D00418F42 /* RNCustomTransitionSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCustomTransitionSegue.m; sourceTree = "<group>"; };
 		ABD5992F196BE47D00418F42 /* RNFadeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFadeTransition.h; sourceTree = "<group>"; };
@@ -131,6 +143,8 @@
 				ABD59930196BE47D00418F42 /* RNFadeTransition.m */,
 				ABA9ECEC19ADE111009C7461 /* RNSlideTransition.h */,
 				ABA9ECED19ADE111009C7461 /* RNSlideTransition.m */,
+				ABA9ED0B19AF7960009C7461 /* RNZoomTransition.h */,
+				ABA9ED0C19AF7960009C7461 /* RNZoomTransition.m */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -184,6 +198,7 @@
 				AB3E760E196BDE0A005C89D8 /* RNAppDelegate.m */,
 				AB3E7610196BDE0A005C89D8 /* Main.storyboard */,
 				ABD44E43196EB3F600D7CD17 /* View Controllers */,
+				ABA9ECF219ADEE57009C7461 /* Segues */,
 				AB3E7616196BDE0A005C89D8 /* Images.xcassets */,
 				AB3E7605196BDE0A005C89D8 /* Supporting Files */,
 			);
@@ -231,6 +246,19 @@
 				AB1DD679196D8237004F1355 /* Categories */,
 			);
 			path = RNCustomTransitions;
+			sourceTree = "<group>";
+		};
+		ABA9ECF219ADEE57009C7461 /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				ABA9ECEF19ADEE53009C7461 /* RNFadeSegue.h */,
+				ABA9ECF019ADEE53009C7461 /* RNFadeSegue.m */,
+				ABA9ECF319ADEE6E009C7461 /* RNSlideUpSegue.h */,
+				ABA9ECF419ADEE6E009C7461 /* RNSlideUpSegue.m */,
+				ABA9ED0E19AF79BB009C7461 /* RNZoomSegue.h */,
+				ABA9ED0F19AF79BB009C7461 /* RNZoomSegue.m */,
+			);
+			name = Segues;
 			sourceTree = "<group>";
 		};
 		ABD44E43196EB3F600D7CD17 /* View Controllers */ = {
@@ -344,14 +372,18 @@
 			files = (
 				AB1DD678196D7C1D004F1355 /* RNTransitionManager.m in Sources */,
 				AB1DD66E196C335B004F1355 /* RNModalViewController.m in Sources */,
+				ABA9ED0D19AF7960009C7461 /* RNZoomTransition.m in Sources */,
 				AB3E760F196BDE0A005C89D8 /* RNAppDelegate.m in Sources */,
 				AB3E7641196BDE69005C89D8 /* UIViewController+RNCustomTransitions.m in Sources */,
 				ABD59931196BE47D00418F42 /* RNFadeTransition.m in Sources */,
 				AB1DD67E196E81FB004F1355 /* RNBlockTransition.m in Sources */,
 				AB3E760B196BDE0A005C89D8 /* main.m in Sources */,
+				ABA9ECF519ADEE6E009C7461 /* RNSlideUpSegue.m in Sources */,
+				ABA9ECF119ADEE53009C7461 /* RNFadeSegue.m in Sources */,
 				ABA9ECEE19ADE111009C7461 /* RNSlideTransition.m in Sources */,
 				AB553EC9196ECF770093729F /* UIImage+RNSnapshot.m in Sources */,
 				ABD59934196BF90500418F42 /* RNTransition.m in Sources */,
+				ABA9ED1019AF79BB009C7461 /* RNZoomSegue.m in Sources */,
 				ABD5992E196BE10D00418F42 /* RNCustomTransitionSegue.m in Sources */,
 				AB3E763E196BDE69005C89D8 /* NSObject+RNSwizzle.m in Sources */,
 				AB3E7615196BDE0A005C89D8 /* RNViewController.m in Sources */,
@@ -483,6 +515,7 @@
 				GCC_PREFIX_HEADER = "RNCustomTransitionsExample/RNCustomTransitionsExample-Prefix.pch";
 				INFOPLIST_FILE = "RNCustomTransitionsExample/RNCustomTransitionsExample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -496,6 +529,7 @@
 				GCC_PREFIX_HEADER = "RNCustomTransitionsExample/RNCustomTransitionsExample-Prefix.pch";
 				INFOPLIST_FILE = "RNCustomTransitionsExample/RNCustomTransitionsExample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -503,7 +537,7 @@
 		AB3E7631196BDE0A005C89D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RNCustomTransitioningExample.app/RNCustomTransitioningExample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RNCustomTransitionsExample.app/RNCustomTransitionsExample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -525,7 +559,7 @@
 		AB3E7632196BDE0A005C89D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RNCustomTransitioningExample.app/RNCustomTransitioningExample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RNCustomTransitionsExample.app/RNCustomTransitionsExample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

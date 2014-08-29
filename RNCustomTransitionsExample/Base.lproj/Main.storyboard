@@ -18,21 +18,47 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO4-jx-SUg">
-                                <rect key="frame" x="110" y="377" width="101" height="34"/>
+                                <rect key="frame" x="83" y="377" width="155" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show Modal">
+                                <state key="normal" title="Slide Up Animation">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNCustomTransitionSegue" id="gXd-UW-CnP"/>
+                                    <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNSlideUpSegue" id="gXd-UW-CnP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kur-US-eD1">
+                                <rect key="frame" x="97" y="335" width="127" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Fade Animation">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNFadeSegue" id="yY8-50-bix"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o88-1h-9xS">
+                                <rect key="frame" x="94" y="293" width="133" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Zoom Animation">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNZoomSegue" id="0Xe-qP-WzE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="IO4-jx-SUg" secondAttribute="centerX" id="7nd-vM-5KP"/>
-                            <constraint firstAttribute="centerY" secondItem="IO4-jx-SUg" secondAttribute="centerY" constant="-110" id="Tzr-oj-qtA"/>
+                            <constraint firstItem="IO4-jx-SUg" firstAttribute="top" secondItem="Kur-US-eD1" secondAttribute="bottom" constant="8" symbolic="YES" id="JWv-rI-Xyy"/>
+                            <constraint firstItem="Kur-US-eD1" firstAttribute="centerX" secondItem="o88-1h-9xS" secondAttribute="centerX" id="ZKw-ba-P1q"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="IO4-jx-SUg" secondAttribute="bottom" constant="157" id="hrQ-Sy-vj5"/>
+                            <constraint firstItem="Kur-US-eD1" firstAttribute="top" secondItem="o88-1h-9xS" secondAttribute="bottom" constant="8" symbolic="YES" id="jN8-Lm-NC1"/>
+                            <constraint firstItem="IO4-jx-SUg" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="lhK-bG-m12"/>
+                            <constraint firstItem="Kur-US-eD1" firstAttribute="centerX" secondItem="IO4-jx-SUg" secondAttribute="centerX" id="xC7-Q8-TBO"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -98,4 +124,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="gXd-UW-CnP"/>
+    </inferredMetricsTieBreakers>
 </document>

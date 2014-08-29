@@ -10,12 +10,13 @@
 #ifndef _RNTRANSITIONS_
 #define _RNTRANSITIONS_
 
-typedef void (^RNVoidBlock)(void);
-typedef void (^RNFinishedBlock)(BOOL finished);
-
 #import "RNTransitionManager.h"
+
+#import "UIViewController+RNCustomTransitions.h"
+
+#import "RNBlockTransition.h"
 #import "RNFadeTransition.h"
 #import "RNSlideTransition.h"
-#import "UIViewController+RNCustomTransitions.h"
+#import "RNZoomTransition.h"
 
 #endif /* _RNTRANSITIONS_ */
