@@ -24,7 +24,6 @@
 		AB3E7620196BDE0A005C89D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3E7602196BDE0A005C89D8 /* UIKit.framework */; };
 		AB3E7628196BDE0A005C89D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB3E7626196BDE0A005C89D8 /* InfoPlist.strings */; };
 		AB3E762A196BDE0A005C89D8 /* RNCustomTransitionsExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E7629196BDE0A005C89D8 /* RNCustomTransitionsExampleTests.m */; };
-		AB3E763E196BDE69005C89D8 /* NSObject+RNSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E7637196BDE69005C89D8 /* NSObject+RNSwizzle.m */; };
 		AB3E7641196BDE69005C89D8 /* UIViewController+RNCustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E763D196BDE69005C89D8 /* UIViewController+RNCustomTransitions.m */; };
 		AB553EC9196ECF770093729F /* UIImage+RNSnapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = AB553EC8196ECF770093729F /* UIImage+RNSnapshot.m */; };
 		ABA9ECEE19ADE111009C7461 /* RNSlideTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ECED19ADE111009C7461 /* RNSlideTransition.m */; };
@@ -32,6 +31,7 @@
 		ABA9ECF519ADEE6E009C7461 /* RNSlideUpSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ECF419ADEE6E009C7461 /* RNSlideUpSegue.m */; };
 		ABA9ED0D19AF7960009C7461 /* RNZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ED0C19AF7960009C7461 /* RNZoomTransition.m */; };
 		ABA9ED1019AF79BB009C7461 /* RNZoomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ED0F19AF79BB009C7461 /* RNZoomSegue.m */; };
+		ABA9ED1619B0C962009C7461 /* RNFlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA9ED1519B0C962009C7461 /* RNFlipTransition.m */; };
 		ABD5992E196BE10D00418F42 /* RNCustomTransitionSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD5992D196BE10D00418F42 /* RNCustomTransitionSegue.m */; };
 		ABD59931196BE47D00418F42 /* RNFadeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD59930196BE47D00418F42 /* RNFadeTransition.m */; };
 		ABD59934196BF90500418F42 /* RNTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD59933196BF90500418F42 /* RNTransition.m */; };
@@ -73,8 +73,6 @@
 		AB3E7625196BDE0A005C89D8 /* RNCustomTransitionsExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RNCustomTransitionsExampleTests-Info.plist"; sourceTree = "<group>"; };
 		AB3E7627196BDE0A005C89D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB3E7629196BDE0A005C89D8 /* RNCustomTransitionsExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCustomTransitionsExampleTests.m; sourceTree = "<group>"; };
-		AB3E7636196BDE69005C89D8 /* NSObject+RNSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RNSwizzle.h"; sourceTree = "<group>"; };
-		AB3E7637196BDE69005C89D8 /* NSObject+RNSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RNSwizzle.m"; sourceTree = "<group>"; };
 		AB3E763C196BDE69005C89D8 /* UIViewController+RNCustomTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RNCustomTransitions.h"; sourceTree = "<group>"; };
 		AB3E763D196BDE69005C89D8 /* UIViewController+RNCustomTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RNCustomTransitions.m"; sourceTree = "<group>"; };
 		AB553EC7196ECF770093729F /* UIImage+RNSnapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RNSnapshot.h"; sourceTree = "<group>"; };
@@ -89,6 +87,9 @@
 		ABA9ED0C19AF7960009C7461 /* RNZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNZoomTransition.m; sourceTree = "<group>"; };
 		ABA9ED0E19AF79BB009C7461 /* RNZoomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNZoomSegue.h; sourceTree = "<group>"; };
 		ABA9ED0F19AF79BB009C7461 /* RNZoomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNZoomSegue.m; sourceTree = "<group>"; };
+		ABA9ED1419B0C962009C7461 /* RNFlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFlipTransition.h; sourceTree = "<group>"; };
+		ABA9ED1519B0C962009C7461 /* RNFlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNFlipTransition.m; sourceTree = "<group>"; };
+		ABA9ED1719B46A03009C7461 /* RNTransitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTransitions.h; sourceTree = "<group>"; };
 		ABD5992C196BE10D00418F42 /* RNCustomTransitionSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCustomTransitionSegue.h; sourceTree = "<group>"; };
 		ABD5992D196BE10D00418F42 /* RNCustomTransitionSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCustomTransitionSegue.m; sourceTree = "<group>"; };
 		ABD5992F196BE47D00418F42 /* RNFadeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNFadeTransition.h; sourceTree = "<group>"; };
@@ -125,8 +126,6 @@
 		AB1DD679196D8237004F1355 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				AB3E7636196BDE69005C89D8 /* NSObject+RNSwizzle.h */,
-				AB3E7637196BDE69005C89D8 /* NSObject+RNSwizzle.m */,
 				AB553EC7196ECF770093729F /* UIImage+RNSnapshot.h */,
 				AB553EC8196ECF770093729F /* UIImage+RNSnapshot.m */,
 				AB3E763C196BDE69005C89D8 /* UIViewController+RNCustomTransitions.h */,
@@ -138,9 +137,12 @@
 		AB1DD67A196D8273004F1355 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
+				ABA9ED1719B46A03009C7461 /* RNTransitions.h */,
 				AB1DD67B196D827F004F1355 /* Base */,
 				ABD5992F196BE47D00418F42 /* RNFadeTransition.h */,
 				ABD59930196BE47D00418F42 /* RNFadeTransition.m */,
+				ABA9ED1419B0C962009C7461 /* RNFlipTransition.h */,
+				ABA9ED1519B0C962009C7461 /* RNFlipTransition.m */,
 				ABA9ECEC19ADE111009C7461 /* RNSlideTransition.h */,
 				ABA9ECED19ADE111009C7461 /* RNSlideTransition.m */,
 				ABA9ED0B19AF7960009C7461 /* RNZoomTransition.h */,
@@ -385,8 +387,8 @@
 				ABD59934196BF90500418F42 /* RNTransition.m in Sources */,
 				ABA9ED1019AF79BB009C7461 /* RNZoomSegue.m in Sources */,
 				ABD5992E196BE10D00418F42 /* RNCustomTransitionSegue.m in Sources */,
-				AB3E763E196BDE69005C89D8 /* NSObject+RNSwizzle.m in Sources */,
 				AB3E7615196BDE0A005C89D8 /* RNViewController.m in Sources */,
+				ABA9ED1619B0C962009C7461 /* RNFlipTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
