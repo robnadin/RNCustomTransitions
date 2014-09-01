@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage     = "https://bitbucket.org/tmti/"
   s.license      = 'MIT'
-  s.author       = { "Robert Nadin" => "rnadin@tmti.net" }
+  s.author       = { "Rob Nadin" => "rnadin@tmti.net" }
   s.platform     = :ios
   s.source       = { :git => "http://bitbucket.org/robnadin/RNCustomTransitions.git", :tag => s.version.to_s }
   s.source_files = 'RNCustomTransitions/*.{h,m}'
