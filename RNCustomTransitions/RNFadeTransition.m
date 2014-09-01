@@ -8,35 +8,42 @@
 
 #import "RNFadeTransition.h"
 
+static const CGFloat kRNFadeTransitionOpacityFrom   = 0.5f;
+static const CGFloat kRNFadeTransitionOpacityTo     = 1.0f;
+
 @implementation RNFadeTransition
 
 #pragma mark - Required Methods
 
 - (void)animateFromView:(UIView *)fromView toView:(UIView *)toView inContainerView:(UIView *)containerView completionBlock:(void (^)(BOOL))completionBlock
 {
-    UIViewTintAdjustmentMode tintAdjustmentMode;
     UIView *presentingView = (self.reverse) ? toView : fromView;
     UIView *presentedView = (self.reverse) ? fromView : toView;
-    presentedView.alpha = self.reverse;
 
     if (self.reverse) {
-        tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+        presentingView.alpha = kRNFadeTransitionOpacityFrom;
+        [containerView addSubview:presentedView];
     } else {
-        tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+        presentingView.alpha = kRNFadeTransitionOpacityTo;
     }
 
-    [containerView addSubview:presentedView];
-
-    [UIView animateWithDuration:self.duration
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         presentingView.alpha = (self.reverse) ? 1.0 : 0.5;
-                         presentingView.tintAdjustmentMode = tintAdjustmentMode;
-                         presentedView.alpha = !self.reverse;
-                     } completion:^(BOOL finished) {
-                         completionBlock(finished);
-                     }
+    [UIView transitionWithView:containerView
+                      duration:self.duration
+                       options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionCurveEaseInOut
+                    animations:^{
+                        if (self.reverse) {
+                            presentingView.alpha = kRNFadeTransitionOpacityTo;
+                            presentingView.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+                            [presentedView removeFromSuperview];
+                            [containerView addSubview:presentingView];
+                        } else {
+                            presentingView.alpha = kRNFadeTransitionOpacityFrom;
+                            presentingView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+                            [containerView addSubview:presentedView];
+                        }
+                    } completion:^(BOOL finished) {
+                        completionBlock(finished);
+                    }
      ];
 }
 
