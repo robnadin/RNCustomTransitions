@@ -10,4 +10,7 @@
 
 @interface RNSlideTransition : RNTransition
 
+@property (nonatomic) CGFloat springDampingRatio;
+@property (nonatomic) CGFloat springVelocity;
+
 @end

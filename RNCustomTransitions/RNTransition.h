@@ -23,7 +23,7 @@
 - (void)animateFromView:(UIView *)fromView
                  toView:(UIView *)toView
         inContainerView:(UIView *)containerView
-        completionBlock:(void (^)(BOOL))completionBlock;
+        completionBlock:(void (^)(BOOL finished))completionBlock;
 
 #pragma mark - Autocomplete
 

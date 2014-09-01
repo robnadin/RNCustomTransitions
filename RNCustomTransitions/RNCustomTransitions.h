@@ -14,9 +14,6 @@
 
 #import "UIViewController+RNCustomTransitions.h"
 
-#import "RNBlockTransition.h"
-#import "RNFadeTransition.h"
-#import "RNSlideTransition.h"
-#import "RNZoomTransition.h"
+#import "RNTransitions.h"
 
 #endif /* _RNTRANSITIONS_ */

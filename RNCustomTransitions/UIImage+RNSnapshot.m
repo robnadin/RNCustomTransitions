@@ -19,11 +19,30 @@
     return [self imageByCapturingView:view afterScreenUpdates:YES];
 }
 
++ (UIImage *)imageByCapturingView:(UIView *)view forOrientation:(UIInterfaceOrientation)orientation
+{
+    return [self imageByCapturingView:view afterScreenUpdates:YES forOrientation:orientation];
+}
+
 + (UIImage *)imageByCapturingView:(UIView *)view afterScreenUpdates:(BOOL)afterUpdates
 {
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    return [self imageByCapturingView:view afterScreenUpdates:afterUpdates forOrientation:orientation];
+}
 
-    BOOL success = [self didTakeScreenshotInView:view afterScreenUpdates:afterUpdates];
++ (UIImage *)imageByCapturingView:(UIView *)view afterScreenUpdates:(BOOL)afterUpdates forOrientation:(UIInterfaceOrientation)orientation
+{
+    CGSize size;
+
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
+        size = CGSizeMake(CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds));
+    } else {
+        size = CGSizeMake(CGRectGetHeight(view.bounds), CGRectGetWidth(view.bounds));
+    }
+
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+
+    BOOL success = [self didTakeScreenshotInView:view afterScreenUpdates:afterUpdates forOrientation:orientation];
 
     UIImage *image;
     if (success) {
@@ -43,9 +62,18 @@
 + (UIImage *)blurredImageByCapturingView:(UIView *)view
                               withRadius:(CGFloat)blurRadius
 {
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
+    CGSize size;
 
-    BOOL success = [self didTakeScreenshotInView:view afterScreenUpdates:YES];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
+        size = CGSizeMake(CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds));
+    } else {
+        size = CGSizeMake(CGRectGetHeight(view.bounds), CGRectGetWidth(view.bounds));
+    }
+
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+
+    BOOL success = [self didTakeScreenshotInView:view afterScreenUpdates:YES forOrientation:orientation];
 
     UIImage *image;
 
@@ -60,7 +88,7 @@
             effectInBuffer.height   = CGBitmapContextGetHeight(effectInContext);
             effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
 
-            UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0.0);
+            UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
 
             CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
             vImage_Buffer effectOutBuffer;
@@ -107,14 +135,21 @@
 
 #pragma mark - Helper Methods
 
-+ (BOOL)didTakeScreenshotInView:(UIView *)view afterScreenUpdates:(BOOL)afterUpdates
++ (BOOL)didTakeScreenshotInView:(UIView *)view afterScreenUpdates:(BOOL)afterUpdates forOrientation:(UIInterfaceOrientation)orientation
 {
+    CALayer *layer;
+    if (orientation == [UIApplication sharedApplication].statusBarOrientation) {
+        layer = view.layer.presentationLayer;
+    } else {
+        layer = view.layer;
+    }
+
     if ([view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
         return [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:afterUpdates];
     } else {
         CGContextRef context = UIGraphicsGetCurrentContext();
         if (context) {
-            [view.layer renderInContext:context];
+            [layer.presentationLayer renderInContext:context];
         }
         return context ? YES : NO;
     }

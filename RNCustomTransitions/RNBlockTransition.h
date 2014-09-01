@@ -10,14 +10,14 @@
 
 @interface RNBlockTransition : RNTransition
 
-+ (instancetype)transitionWithAnimation:(void (^)(UIView *fromView,
-                                                  UIView *toView,
-                                                  UIView *containerView,
-                                                  void (^executeWhenAnimationIsCompleted)(BOOL finished)))animationBlock;
++ (instancetype)transitionWithDuration:(NSTimeInterval)duration
+                            animations:(void (^)(UIView *fromView, UIView *toView, UIView *containerView))animations
+                            completion:(void (^)(BOOL finished))completion;
 
-- (instancetype)initWithAnimation:(void (^)(UIView *fromView,
-                                            UIView *toView,
-                                            UIView *containerView,
-                                            void (^executeWhenAnimationIsCompleted)(BOOL finished)))animationBlock;
+
+- (instancetype)initWithDuration:(NSTimeInterval)duration
+                      animations:(void (^)(UIView *fromView, UIView *toView, UIView *containerView))animations
+                      completion:(void (^)(BOOL finished))completion;
+
 
 @end

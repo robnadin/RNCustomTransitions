@@ -10,7 +10,7 @@
 
 @interface RNBlockTransition ()
 
-@property (nonatomic, copy) void (^animationBlock)(UIView *, UIView *, UIView *, void (^)(BOOL));
+@property (nonatomic, copy) void (^animationBlock)(UIView *, UIView *, UIView *);
 
 @end
 
@@ -19,30 +19,32 @@
 
 #pragma mark - Class Methods
 
-+ (instancetype)transitionWithDuration:(NSTimeInterval)duration animations:(void (^)(UIView *, UIView *, UIView *, void (^)(BOOL)))animations
++ (instancetype)transitionWithDuration:(NSTimeInterval)duration animations:(void (^)(UIView *, UIView *, UIView *))animations completion:(void (^)(BOOL))completion
 {
-    RNBlockTransition *transition = [[super alloc] initWithDuration:duration completionBlock:nil];
-    transition.animationBlock = animations;
-
+    RNBlockTransition *transition = [[RNBlockTransition alloc] initWithDuration:duration animations:animations completion:completion];
     return transition;
 }
 
 #pragma mark - Init Methods
 
-- (instancetype)initWithDuration:(NSTimeInterval)duration animations:(void (^)(UIView *, UIView *, UIView *, void (^)(BOOL)))animations
+- (instancetype)initWithDuration:(NSTimeInterval)duration animations:(void (^)(UIView *, UIView *, UIView *))animations completion:(void (^)(BOOL))completion
 {
-    return [self.class transitionWithDuration:duration animations:animations];
+    self = [super initWithDuration:duration completionBlock:completion];
+    if (self) {
+        _animationBlock = animations;
+    }
+    return self;
 }
 
-#pragma mark - Override methods
+#pragma mark - Override Methods
 
 - (void)animateFromView:(UIView *)fromView
                  toView:(UIView *)toView
         inContainerView:(UIView *)containerView
-    executeOnCompletion:(void (^)(BOOL))onCompletion
+        completionBlock:(void (^)(BOOL))completionBlock
 {
     if (self.animationBlock) {
-        self.animationBlock(fromView, toView, containerView, onCompletion);
+        self.animationBlock(fromView, toView, containerView);
     }
 }
 

@@ -10,6 +10,18 @@
 
 @implementation RNZoomTransition
 
+#pragma mark - Init Methods
+
+- (instancetype)initWithDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL))completionBlock
+{
+    self = [super initWithDuration:duration completionBlock:completionBlock];
+    if (self) {
+        _springDampingRatio = 0.75;
+        _springVelocity = 0.1;
+    }
+    return self;
+}
+
 #pragma mark - Required Methods
 
 - (void)animateFromView:(UIView *)fromView
@@ -50,8 +62,8 @@
 
     [UIView animateWithDuration:self.duration
                           delay:0
-         usingSpringWithDamping:0.75
-          initialSpringVelocity:0.1
+         usingSpringWithDamping:self.springDampingRatio
+          initialSpringVelocity:self.springVelocity
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          presentingView.alpha = (self.reverse) ? 1.0 : 0.5;

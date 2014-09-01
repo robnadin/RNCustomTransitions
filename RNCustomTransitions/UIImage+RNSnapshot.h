@@ -11,7 +11,9 @@
 @interface UIImage (RNSnapshot)
 
 + (UIImage *)imageByCapturingView:(UIView *)view;
++ (UIImage *)imageByCapturingView:(UIView *)view forOrientation:(UIInterfaceOrientation)orientation;
 + (UIImage *)imageByCapturingView:(UIView *)view afterScreenUpdates:(BOOL)afterUpdates;
++ (UIImage *)imageByCapturingView:(UIView *)view afterScreenUpdates:(BOOL)afterUpdates forOrientation:(UIInterfaceOrientation)orientation;
 
 + (UIImage *)blurredImageByCapturingView:(UIView *)view;
 + (UIImage *)blurredImageByCapturingView:(UIView *)view withRadius:(CGFloat)blurRadius;

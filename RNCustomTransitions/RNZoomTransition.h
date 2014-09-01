@@ -18,5 +18,7 @@
 @interface RNZoomTransition : RNTransition
 
 @property (nonatomic) id<RNZoomTransitionDelegate> zoomTransitionDelegate;
+@property (nonatomic) CGFloat springDampingRatio;
+@property (nonatomic) CGFloat springVelocity;
 
 @end

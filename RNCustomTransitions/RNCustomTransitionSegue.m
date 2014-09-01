@@ -29,7 +29,6 @@
     UIViewController *destinationViewController = self.destinationViewController;
 
     destinationViewController.transitioningDelegate = [RNTransitionManager sharedManager];
-    destinationViewController.modalPresentationStyle = UIModalPresentationCustom;
 
     if (self.unwind) {
         [sourceViewController dismissViewControllerAnimated:YES completion:nil];

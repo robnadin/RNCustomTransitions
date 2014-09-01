@@ -62,6 +62,38 @@
     [self.animationControllers setObject:transition forKey:keyValue];
 }
 
+- (RNTransition *)transitionForFromViewController:(UIViewController *)fromViewController
+{
+    return [self transitionForFromViewController:fromViewController toViewController:nil];
+}
+
+- (RNTransition *)transitionForFromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController
+{
+    RNTransitionModel *keyValue = [[RNTransitionModel alloc] init];
+    keyValue.fromViewControllerClass = fromViewController.class;
+    keyValue.toViewControllerClass = toViewController.class;
+
+    __block RNTransition *animationController = [self.animationControllers objectForKey:keyValue];
+
+    if (!animationController) {
+        if (fromViewController.isBeingDismissed) {
+            UIViewController *presentingViewController = fromViewController.presentingViewController;
+            keyValue.fromViewControllerClass = presentingViewController.class;
+            animationController = [self.animationControllers objectForKey:keyValue];
+
+            if (!animationController) {
+                [presentingViewController.childViewControllers enumerateObjectsUsingBlock:^(UIViewController *childViewController, NSUInteger idx, BOOL *stop) {
+                    keyValue.fromViewControllerClass = childViewController.class;
+                    animationController = [self.animationControllers objectForKey:keyValue];
+                    *stop = (animationController != nil);
+                }];
+            }
+        }
+    }
+
+    return animationController;
+}
+
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented

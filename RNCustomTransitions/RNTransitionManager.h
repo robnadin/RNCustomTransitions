@@ -20,4 +20,7 @@
 - (void)setTransition:(RNTransition *)transition fromViewController:(UIViewController *)fromViewController
      toViewController:(UIViewController *)toViewController;
 
+- (RNTransition *)transitionForFromViewController:(UIViewController *)fromViewController;
+- (RNTransition *)transitionForFromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController;
+
 @end

@@ -8,7 +8,7 @@
 
 #import <objc/runtime.h>
 #import "UIViewController+RNCustomTransitions.h"
-#import "RNTransition.h"
+#import "RNTransitions.h"
 
 @interface RNTransition () <UIGestureRecognizerDelegate>
 {
@@ -26,7 +26,7 @@
 
 + (instancetype)transitionWithDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL))completionBlock
 {
-    return [[RNTransition alloc] initWithDuration:duration completionBlock:completionBlock];
+    return [[self.class alloc] initWithDuration:duration completionBlock:completionBlock];
 }
 
 #pragma mark - Init Methods
@@ -64,6 +64,8 @@
 {
     _transitionContext = transitionContext;
 
+    UIModalPresentationStyle presentationStyle = [transitionContext presentationStyle];
+
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = [transitionContext containerView];
@@ -99,7 +101,7 @@
     if (presentingViewController) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             // iPad: Determine frame size of toViewController's view based on presentation style
-            switch (self.presentationStyle) {
+            switch (presentationStyle) {
                 case UIModalPresentationPageSheet:
                 {
                     BOOL isLandscape = UIInterfaceOrientationIsLandscape(fromViewController.interfaceOrientation);
@@ -116,27 +118,51 @@
                     }
                     break;
                 }
+
+                default:
+                    NSLog(@"Modal presentation style not implemented!");
             }
         }
     }
 
-    // Enable/disable user interaction for originating view controller
-    UIViewController *originatingViewController = (self.reverse) ? toViewController : fromViewController;
-    originatingViewController.view.userInteractionEnabled = self.reverse;
+    RNTransition *transition;
 
-    [self animateFromView:fromViewController.view
-                   toView:toViewController.view
-          inContainerView:containerView
-          completionBlock:^(BOOL finished) {
-              BOOL wasCancelled = [transitionContext transitionWasCancelled];
-              if (wasCancelled) {
-                  [toViewController.view removeFromSuperview];
-              }
-              // Just in case...
-              dispatch_async(dispatch_get_main_queue(), ^{
-                  [transitionContext completeTransition:!wasCancelled];
-              });
-          }
+    if (presentationStyle != UIModalPresentationCustom) {
+        switch (presentationStyle) {
+            case UIModalPresentationFullScreen:
+                break;
+
+            default:
+                break;
+        }
+
+        UIViewController *viewController;
+        if (fromViewController.isBeingDismissed) {
+            viewController = fromViewController;
+        }
+
+        if (viewController.isBeingPresented || viewController.isBeingDismissed) {
+            transition.reverse = viewController.isBeingDismissed;
+        }
+    }
+
+    // Enable/disable user interaction for the source view controller
+    UIViewController *sourceViewController = (self.reverse) ? toViewController : fromViewController;
+    sourceViewController.view.userInteractionEnabled = self.reverse;
+
+    [transition?:self animateFromView:fromViewController.view
+                               toView:toViewController.view
+                      inContainerView:containerView
+                      completionBlock:^(BOOL finished) {
+                          BOOL wasCancelled = [transitionContext transitionWasCancelled];
+                          if (wasCancelled) {
+                              [toViewController.view removeFromSuperview];
+                          }
+                          // Just in case...
+                          dispatch_async(dispatch_get_main_queue(), ^{
+                              [transitionContext completeTransition:!wasCancelled];
+                          });
+                      }
      ];
 }
 
