@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RNCustomTransitions"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "Block-based custom animations API for iOS."
   s.description  = <<-DESC
                    A longer description of RNCustomTransitions in Markdown format.
