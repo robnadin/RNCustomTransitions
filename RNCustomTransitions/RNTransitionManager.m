@@ -101,6 +101,8 @@
                                                                       sourceController:(UIViewController *)source
 {
     RNTransitionModel *keyValue = [[RNTransitionModel alloc] init];
+    // TODO: Add property for presenting view controller? This would make it easier to find the correct transition for dismissal
+    // when it is not clear which view controller is presenting.
     keyValue.fromViewControllerClass = source.class;
     keyValue.toViewControllerClass = presented.class;
 
@@ -118,16 +120,29 @@
     __block RNTransition *animationController = [self.animationControllers objectForKey:keyValue];
 
     if (!animationController) {
-        UIViewController *presentingViewController = dismissed.presentingViewController;
-        keyValue.fromViewControllerClass = presentingViewController.class;
-        animationController = [self.animationControllers objectForKey:keyValue];
-
-        if (!animationController) {
-            [presentingViewController.childViewControllers enumerateObjectsUsingBlock:^(UIViewController *childViewController, NSUInteger idx, BOOL *stop) {
+        // TODO: Make recursive method???
+        UIViewController *(^SourceViewController)(UIViewController *) = ^(UIViewController *viewController) {
+            __block UIViewController *selectedViewController;
+            [viewController.childViewControllers enumerateObjectsUsingBlock:^(UIViewController *childViewController, NSUInteger idx, BOOL *stop) {
                 keyValue.fromViewControllerClass = childViewController.class;
                 animationController = [self.animationControllers objectForKey:keyValue];
+                if ([childViewController isKindOfClass:UITabBarController.class]) {
+                    childViewController = [(UITabBarController *)childViewController selectedViewController];
+                    if ([childViewController isKindOfClass:UINavigationController.class]) {
+                        selectedViewController = [(UINavigationController *)childViewController topViewController];
+                        keyValue.fromViewControllerClass = selectedViewController.class;
+                    }
+                    animationController = [self.animationControllers objectForKey:keyValue];
+                }
                 *stop = (animationController != nil);
             }];
+            return selectedViewController;
+        };
+
+        UIViewController *selectedChildViewController = SourceViewController(presentingViewController);
+        if (!animationController) {
+            // Search child view controllers of selectedChildViewController
+            selectedChildViewController = SourceViewController(selectedChildViewController);
         }
     }
 
