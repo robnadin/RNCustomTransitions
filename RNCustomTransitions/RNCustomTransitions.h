@@ -10,6 +10,7 @@
 #ifndef _RNTRANSITIONS_
 #define _RNTRANSITIONS_
 
+#import "RNCustomTransitionSegue.h"
 #import "RNTransitionManager.h"
 
 #import "UIViewController+RNCustomTransitions.h"

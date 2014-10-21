@@ -75,7 +75,6 @@
                presentingView:(UIView *)presentingView
                 containerView:(UIView *)containerView
               completionBlock:(void (^)(BOOL))completionBlock
-
 {
     [containerView addSubview:presentedView];
     presentedView.alpha = 0.0;
@@ -99,10 +98,6 @@
               completionBlock:(void (^)(BOOL))completionBlock
 {
     [containerView addSubview:presentingView];
-    
-    if (!presentedView) {
-        presentedView = toViewController.view; //temp// todo: move to base class
-    }
     
     [UIView transitionWithView:containerView duration:self.duration options:UIViewAnimationOptionCurveEaseInOut animations:^{
         presentedView.alpha = 1.0;

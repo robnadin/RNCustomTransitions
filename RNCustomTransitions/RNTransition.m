@@ -85,7 +85,7 @@
     // iOS 8+
     if ([transitionContext respondsToSelector:@selector(viewForKey:)]) {
         fromView = [transitionContext viewForKey:UITransitionContextFromViewKey] ?: fromView;
-        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+        toView = [transitionContext viewForKey:UITransitionContextToViewKey] ?: toView;
     }
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
