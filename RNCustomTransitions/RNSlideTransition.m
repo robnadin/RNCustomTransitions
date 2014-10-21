@@ -24,15 +24,32 @@
 
 #pragma mark - Required Methods
 
-- (void)animateFromView:(UIView *)fromView
-                 toView:(UIView *)toView
-        inContainerView:(UIView *)containerView
-        completionBlock:(void (^)(BOOL))completionBlock
+- (void)animateFromViewController:(UIViewController *)fromViewController
+                 toViewController:(UIViewController *)toViewController
+                   presentingView:(UIView *)presentingView
+                    presentedView:(UIView *)presentedView
+                    containerView:(UIView *)containerView
+                  completionBlock:(void (^)(BOOL))completionBlock
 {
+    if (!self.reverse) {
+        [self presentViewController:toViewController
+                 fromViewController:fromViewController
+                      presentedView:presentedView
+                     presentingView:presentingView
+                      containerView:containerView
+                    completionBlock:completionBlock];
+    } else {
+        [self dismissViewController:fromViewController
+                   toViewController:toViewController
+                      presentedView:presentingView
+                     presentingView:presentedView
+                      containerView:containerView
+                    completionBlock:completionBlock];
+    }
+    
+    /*
     CGAffineTransform endTransform;
     UIViewTintAdjustmentMode tintAdjustmentMode;
-    UIView *presentingView = (self.reverse) ? toView : fromView;
-    UIView *presentedView = (self.reverse) ? fromView : toView;
 
     CGRect containerFrame = containerView.frame;
     CGRect presentedFrame = presentedView.frame;
@@ -48,6 +65,10 @@
     CGFloat slideHeight = MAX(CGRectGetHeight(containerFrame), CGRectGetHeight(presentedFrame));
     CGAffineTransform translateTransform = CGAffineTransformTranslate(presentedView.transform, 0, slideHeight);
 
+    if (!presentedView) {
+        presentedView = fromViewController.view; //temp// todo: move to base class
+    }
+    
     if (self.reverse) {
         endTransform = translateTransform;
         tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
@@ -73,6 +94,75 @@
                          completionBlock(finished);
                      }
      ];
+     */
+}
+
+#pragma mark - Animation Methods
+
+- (void)presentViewController:(UIViewController *)toViewController
+           fromViewController:(UIViewController *)fromViewController
+                presentedView:(UIView *)presentedView
+               presentingView:(UIView *)presentingView
+                containerView:(UIView *)containerView
+              completionBlock:(void (^)(BOOL))completionBlock
+{
+    [containerView addSubview:presentedView];
+    
+    CGRect containerFrame = containerView.frame;
+    CGRect presentedFrame = presentedView.frame;
+    
+    CGFloat slideHeight = MAX(CGRectGetHeight(containerFrame), CGRectGetHeight(presentedFrame));
+    CGAffineTransform translateTransform = CGAffineTransformTranslate(presentedView.transform, 0, slideHeight);
+    
+    CGAffineTransform endTransform = presentedView.transform;
+    
+    presentedView.transform = translateTransform;
+    
+    [UIView animateWithDuration:self.duration
+                          delay:0
+         usingSpringWithDamping:self.springDampingRatio
+          initialSpringVelocity:self.springVelocity
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         presentingView.alpha = 0.5;
+                         presentedView.transform = endTransform;
+                         fromViewController.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+                     } completion:^(BOOL finished) {
+                         if (completionBlock) {
+                             completionBlock(finished);
+                         }
+                     }];
+}
+
+- (void)dismissViewController:(UIViewController *)fromViewController
+             toViewController:(UIViewController *)toViewController
+                presentedView:(UIView *)presentedView
+               presentingView:(UIView *)presentingView
+                containerView:(UIView *)containerView
+              completionBlock:(void (^)(BOOL))completionBlock
+{
+    [containerView addSubview:presentedView];
+    
+    CGRect containerFrame = containerView.frame;
+    CGRect presentedFrame = presentedView.frame;
+    
+    CGFloat slideHeight = MAX(CGRectGetHeight(containerFrame), CGRectGetHeight(presentedFrame));
+    CGAffineTransform translateTransform = CGAffineTransformTranslate(presentedView.transform, 0, slideHeight);
+    CGAffineTransform endTransform = translateTransform;
+    
+    [UIView animateWithDuration:self.duration
+                          delay:0
+         usingSpringWithDamping:self.springDampingRatio
+          initialSpringVelocity:self.springVelocity
+                        options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                            presentingView.alpha = 1.0;
+                            presentedView.transform = endTransform;
+                            toViewController.view.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+                        } completion:^(BOOL finished) {
+                            if (completionBlock) {
+                                completionBlock(finished);
+                            }
+                        }];
 }
 
 #pragma mark - Helper Methods
