@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,55 +14,91 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO4-jx-SUg">
-                                <rect key="frame" x="83" y="377" width="155" height="34"/>
-                                <state key="normal" title="Slide Up Animation">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNSlideUpSegue" id="gXd-UW-CnP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kur-US-eD1">
-                                <rect key="frame" x="97" y="335" width="127" height="34"/>
-                                <state key="normal" title="Fade Animation">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNFadeSegue" id="yY8-50-bix"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o88-1h-9xS">
-                                <rect key="frame" x="94" y="293" width="133" height="34"/>
-                                <state key="normal" title="Zoom Animation">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNZoomSegue" id="0Xe-qP-WzE"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTG-oS-JfZ" userLabel="Subview">
+                                <rect key="frame" x="20" y="179" width="560" height="242"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o88-1h-9xS">
+                                        <rect key="frame" x="213.5" y="20" width="133" height="34"/>
+                                        <state key="normal" title="Zoom Animation">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNZoomSegue" id="0Xe-qP-WzE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kur-US-eD1">
+                                        <rect key="frame" x="216.5" y="62" width="127" height="34"/>
+                                        <state key="normal" title="Fade Animation">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNFadeSegue" id="yY8-50-bix"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IO4-jx-SUg">
+                                        <rect key="frame" x="202.5" y="104" width="155" height="34"/>
+                                        <state key="normal" title="Slide Up Animation">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="uC2-Ms-FCe" kind="custom" customClass="RNSlideUpSegue" id="gXd-UW-CnP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceQ-3q-WcJ">
+                                        <rect key="frame" x="222.5" y="146" width="115" height="34"/>
+                                        <state key="normal" title="Flip Animation">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="uC2-Ms-FCe" kind="custom" customClass="FlipSegue" customModule="RNCustomTransitionsExample" id="9S8-CG-Y4c"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcY-cM-yna">
+                                        <rect key="frame" x="206" y="188" width="148" height="34"/>
+                                        <state key="normal" title="Bounce Animation">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="uC2-Ms-FCe" kind="custom" customClass="BounceSegue" customModule="RNCustomTransitionsExample" id="FE9-7T-GMi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ceQ-3q-WcJ" firstAttribute="top" secondItem="IO4-jx-SUg" secondAttribute="bottom" constant="8" id="AoU-fS-Ryz"/>
+                                    <constraint firstAttribute="centerX" secondItem="IO4-jx-SUg" secondAttribute="centerX" id="FBK-Uq-JSM"/>
+                                    <constraint firstAttribute="centerX" secondItem="ceQ-3q-WcJ" secondAttribute="centerX" id="KOy-Ca-jpy"/>
+                                    <constraint firstItem="Kur-US-eD1" firstAttribute="top" secondItem="o88-1h-9xS" secondAttribute="bottom" constant="8" id="Zuf-iR-d7f"/>
+                                    <constraint firstAttribute="centerX" secondItem="RcY-cM-yna" secondAttribute="centerX" id="gEZ-bw-ZgT"/>
+                                    <constraint firstItem="IO4-jx-SUg" firstAttribute="top" secondItem="Kur-US-eD1" secondAttribute="bottom" constant="8" id="jcC-x8-tmR"/>
+                                    <constraint firstAttribute="bottom" secondItem="RcY-cM-yna" secondAttribute="bottom" constant="20" id="kaA-ME-tuB"/>
+                                    <constraint firstAttribute="centerX" secondItem="Kur-US-eD1" secondAttribute="centerX" id="o33-OZ-iSz"/>
+                                    <constraint firstItem="RcY-cM-yna" firstAttribute="top" secondItem="ceQ-3q-WcJ" secondAttribute="bottom" constant="8" id="oV0-cf-P7t"/>
+                                    <constraint firstItem="o88-1h-9xS" firstAttribute="top" secondItem="rTG-oS-JfZ" secondAttribute="top" constant="20" id="pSl-mW-TCA"/>
+                                    <constraint firstAttribute="centerX" secondItem="o88-1h-9xS" secondAttribute="centerX" id="uLf-8h-PsU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="IO4-jx-SUg" firstAttribute="top" secondItem="Kur-US-eD1" secondAttribute="bottom" constant="8" symbolic="YES" id="JWv-rI-Xyy"/>
-                            <constraint firstItem="Kur-US-eD1" firstAttribute="centerX" secondItem="o88-1h-9xS" secondAttribute="centerX" id="ZKw-ba-P1q"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="IO4-jx-SUg" secondAttribute="bottom" constant="157" id="hrQ-Sy-vj5"/>
-                            <constraint firstItem="Kur-US-eD1" firstAttribute="top" secondItem="o88-1h-9xS" secondAttribute="bottom" constant="8" symbolic="YES" id="jN8-Lm-NC1"/>
-                            <constraint firstItem="IO4-jx-SUg" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="lhK-bG-m12"/>
-                            <constraint firstItem="Kur-US-eD1" firstAttribute="centerX" secondItem="IO4-jx-SUg" secondAttribute="centerX" id="xC7-Q8-TBO"/>
+                            <constraint firstAttribute="centerY" secondItem="rTG-oS-JfZ" secondAttribute="centerY" id="1HK-WN-jlj"/>
+                            <constraint firstItem="rTG-oS-JfZ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="HKd-av-jZ8"/>
+                            <constraint firstAttribute="centerX" secondItem="rTG-oS-JfZ" secondAttribute="centerX" id="UOC-gO-xuF"/>
+                            <constraint firstAttribute="trailing" secondItem="rTG-oS-JfZ" secondAttribute="trailing" constant="20" id="xFA-Kg-Gvg"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="78"/>
+            <point key="canvasLocation" x="121.875" y="82.394366197183089"/>
         </scene>
         <!--Modal View Controller-->
         <scene sceneID="S16-be-WsV">
@@ -111,15 +147,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TFS-qn-3Iz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="AAX-s7-C0u" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="564" y="182"/>
+            <point key="canvasLocation" x="735" y="82"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gXd-UW-CnP"/>
+        <segue reference="9S8-CG-Y4c"/>
     </inferredMetricsTieBreakers>
 </document>

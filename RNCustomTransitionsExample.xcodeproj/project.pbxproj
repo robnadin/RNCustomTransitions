@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		889B020119F6A4590011AE2E /* FlipSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889B020019F6A4590011AE2E /* FlipSegue.swift */; };
 		AB1DD66E196C335B004F1355 /* RNModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1DD66D196C335B004F1355 /* RNModalViewController.m */; };
 		AB1DD678196D7C1D004F1355 /* RNTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1DD677196D7C1D004F1355 /* RNTransitionManager.m */; };
 		AB1DD67E196E81FB004F1355 /* RNBlockTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1DD67D196E81FB004F1355 /* RNBlockTransition.m */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		88247ADD19F6788A00DB27E0 /* RNCustomTransitionsExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNCustomTransitionsExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		889B020019F6A4590011AE2E /* FlipSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipSegue.swift; sourceTree = "<group>"; };
 		AB1DD66C196C335B004F1355 /* RNModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNModalViewController.h; sourceTree = "<group>"; };
 		AB1DD66D196C335B004F1355 /* RNModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNModalViewController.m; sourceTree = "<group>"; };
 		AB1DD676196D7C1D004F1355 /* RNTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTransitionManager.h; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				ABA9ECF419ADEE6E009C7461 /* RNSlideUpSegue.m */,
 				ABA9ED0E19AF79BB009C7461 /* RNZoomSegue.h */,
 				ABA9ED0F19AF79BB009C7461 /* RNZoomSegue.m */,
+				889B020019F6A4590011AE2E /* FlipSegue.swift */,
 			);
 			name = Segues;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 			files = (
 				AB1DD678196D7C1D004F1355 /* RNTransitionManager.m in Sources */,
 				AB1DD66E196C335B004F1355 /* RNModalViewController.m in Sources */,
+				889B020119F6A4590011AE2E /* FlipSegue.swift in Sources */,
 				ABA9ED0D19AF7960009C7461 /* RNZoomTransition.m in Sources */,
 				AB3E760F196BDE0A005C89D8 /* RNAppDelegate.m in Sources */,
 				AB3E7641196BDE69005C89D8 /* UIViewController+RNCustomTransitions.m in Sources */,
@@ -472,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -504,7 +508,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

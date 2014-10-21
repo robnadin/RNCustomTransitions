@@ -55,7 +55,7 @@
 
 - (CGPoint)zoomOrigin
 {
-    return self.selectedButton.center;
+    return [self.view convertPoint:self.selectedButton.center fromView:self.selectedButton.superview];
 }
 
 @end
