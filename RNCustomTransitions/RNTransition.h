@@ -23,7 +23,14 @@
 - (void)animateFromView:(UIView *)fromView
                  toView:(UIView *)toView
         inContainerView:(UIView *)containerView
-        completionBlock:(void (^)(BOOL finished))completionBlock;
+        completionBlock:(void (^)(BOOL finished))completionBlock NS_DEPRECATED_IOS(7_0, 8_0);
+
+- (void)animateFromViewController:(UIViewController *)fromViewController
+                 toViewController:(UIViewController *)toViewController
+                   presentingView:(UIView *)presentingView
+                    presentedView:(UIView *)presentedView
+                    containerView:(UIView *)containerView
+                  completionBlock:(void (^)(BOOL finished))completionBlock;
 
 #pragma mark - Autocomplete
 

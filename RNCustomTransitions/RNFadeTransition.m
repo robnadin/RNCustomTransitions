@@ -8,18 +8,37 @@
 
 #import "RNFadeTransition.h"
 
-static const CGFloat kRNFadeTransitionOpacityFrom   = 0.5f;
-static const CGFloat kRNFadeTransitionOpacityTo     = 1.0f;
+//static const CGFloat kRNFadeTransitionOpacityFrom   = 0.5f;
+//static const CGFloat kRNFadeTransitionOpacityTo     = 1.0f;
 
 @implementation RNFadeTransition
 
 #pragma mark - Required Methods
 
-- (void)animateFromView:(UIView *)fromView toView:(UIView *)toView inContainerView:(UIView *)containerView completionBlock:(void (^)(BOOL))completionBlock
+- (void)animateFromViewController:(UIViewController *)fromViewController
+                 toViewController:(UIViewController *)toViewController
+                   presentingView:(UIView *)presentingView
+                    presentedView:(UIView *)presentedView
+                    containerView:(UIView *)containerView
+                  completionBlock:(void (^)(BOOL))completionBlock
 {
-    UIView *presentingView = (self.reverse) ? toView : fromView;
-    UIView *presentedView = (self.reverse) ? fromView : toView;
-
+    if (self.reverse) {
+        [self dismissViewController:fromViewController
+                   toViewController:toViewController
+                      presentedView:presentedView
+                     presentingView:presentingView
+                      containerView:containerView
+                    completionBlock:completionBlock];
+    } else {
+        [self presentViewController:toViewController
+                 fromViewController:fromViewController
+                      presentedView:presentedView
+                     presentingView:presentingView
+                      containerView:containerView
+                    completionBlock:completionBlock];
+    }
+    
+    /*
     if (self.reverse) {
         presentingView.alpha = kRNFadeTransitionOpacityFrom;
         [containerView addSubview:presentedView];
@@ -45,6 +64,55 @@ static const CGFloat kRNFadeTransitionOpacityTo     = 1.0f;
                         completionBlock(finished);
                     }
      ];
+     */
+}
+
+#pragma mark - Animation Methods
+
+- (void)presentViewController:(UIViewController *)toViewController
+           fromViewController:(UIViewController *)fromViewController
+                presentedView:(UIView *)presentedView
+               presentingView:(UIView *)presentingView
+                containerView:(UIView *)containerView
+              completionBlock:(void (^)(BOOL))completionBlock
+
+{
+    [containerView addSubview:presentedView];
+    presentedView.alpha = 0.0;
+    
+    [UIView transitionWithView:containerView duration:self.duration options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        presentedView.alpha = 1.0;
+        presentingView.alpha = 0.5;
+        fromViewController.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+    } completion:^(BOOL finished) {
+        if (completionBlock) {
+            completionBlock(finished);
+        }
+    }];
+}
+
+- (void)dismissViewController:(UIViewController *)fromViewController
+             toViewController:(UIViewController *)toViewController
+                presentedView:(UIView *)presentedView
+               presentingView:(UIView *)presentingView
+                containerView:(UIView *)containerView
+              completionBlock:(void (^)(BOOL))completionBlock
+{
+    [containerView addSubview:presentingView];
+    
+    if (!presentedView) {
+        presentedView = toViewController.view; //temp// todo: move to base class
+    }
+    
+    [UIView transitionWithView:containerView duration:self.duration options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        presentedView.alpha = 1.0;
+        presentingView.alpha = 0.0;
+        toViewController.view.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+    } completion:^(BOOL finished) {
+        if (completionBlock) {
+            completionBlock(finished);
+        }
+    }];
 }
 
 @end

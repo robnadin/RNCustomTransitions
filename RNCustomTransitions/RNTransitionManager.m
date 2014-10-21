@@ -139,11 +139,17 @@
             return selectedViewController;
         };
 
-        UIViewController *selectedChildViewController = SourceViewController(presentingViewController);
+        UIViewController *selectedChildViewController = SourceViewController(dismissed.presentingViewController);
         if (!animationController) {
             // Search child view controllers of selectedChildViewController
             selectedChildViewController = SourceViewController(selectedChildViewController);
         }
+    }
+    
+    //temp
+    if (!animationController) {
+        keyValue.fromViewControllerClass = dismissed.presentingViewController.class;
+        animationController = [self.animationControllers objectForKey:keyValue];
     }
 
     if (animationController) {

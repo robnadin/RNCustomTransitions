@@ -49,9 +49,18 @@
         completionBlock:(void (^)(BOOL))completionBlock
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:@"Override -animateFromView:toView:inContainerView:executeOnCompletion: in your subclass."
+                                   reason:[NSString stringWithFormat:@"Override -%@ or %@ in your subclass.", NSStringFromSelector(@selector(animateFromView:toView:inContainerView:completionBlock:)), NSStringFromSelector(@selector(animateFromViewController:toViewController:presentingView:presentedView:containerView:completionBlock:))]
                                  userInfo:nil];
 }
+
+/*
+- (void)animateFromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController presentingView:(UIView *)presentingView presentedView:(UIView *)presentedView containerView:(UIView *)containerView completionBlock:(void (^)(BOOL))completionBlock
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"Override -%@ or %@ in your subclass.", NSStringFromSelector(@selector(animateFromView:toView:inContainerView:completionBlock:)), NSStringFromSelector(@selector(animateFromViewController:toViewController:presentingView:presentedView:containerView:completionBlock:))]
+                                 userInfo:nil];
+}
+ */
 
 #pragma mark - Required Methods
 
@@ -70,6 +79,15 @@
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *containerView = [transitionContext containerView];
 
+    UIView *fromView = fromViewController.view;
+    UIView *toView = toViewController.view;
+    
+    // iOS 8+
+    if ([transitionContext respondsToSelector:@selector(viewForKey:)]) {
+        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey] ?: fromView;
+        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+    }
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapGesture.delegate = self;
     [containerView addGestureRecognizer:tapGesture];
@@ -125,45 +143,34 @@
         }
     }
 
-    RNTransition *transition;
-
-    if (presentationStyle != UIModalPresentationCustom) {
-        switch (presentationStyle) {
-            case UIModalPresentationFullScreen:
-                break;
-
-            default:
-                break;
-        }
-
-        UIViewController *viewController;
-        if (fromViewController.isBeingDismissed) {
-            viewController = fromViewController;
-        }
-
-        if (viewController.isBeingPresented || viewController.isBeingDismissed) {
-            transition.reverse = viewController.isBeingDismissed;
-        }
-    }
-
     // Enable/disable user interaction for the source view controller
     UIViewController *sourceViewController = (self.reverse) ? toViewController : fromViewController;
     sourceViewController.view.userInteractionEnabled = self.reverse;
 
-    [transition?:self animateFromView:fromViewController.view
-                               toView:toViewController.view
-                      inContainerView:containerView
-                      completionBlock:^(BOOL finished) {
-                          BOOL wasCancelled = [transitionContext transitionWasCancelled];
-                          if (wasCancelled) {
-                              [toViewController.view removeFromSuperview];
-                          }
-                          // Just in case...
-                          dispatch_async(dispatch_get_main_queue(), ^{
-                              [transitionContext completeTransition:!wasCancelled];
-                          });
-                      }
-     ];
+    void (^completionBlock)(BOOL) = ^(BOOL finished) {
+        BOOL wasCancelled = [transitionContext transitionWasCancelled];
+        if (wasCancelled) {
+            [toViewController.view removeFromSuperview];
+        }
+        // Just in case...
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [transitionContext completeTransition:!wasCancelled];
+        });
+    };
+    
+    if ([self respondsToSelector:@selector(animateFromViewController:toViewController:presentingView:presentedView:containerView:completionBlock:)]) {
+        [self animateFromViewController:fromViewController
+                       toViewController:toViewController
+                         presentingView:fromView
+                          presentedView:toView
+                          containerView:containerView
+                        completionBlock:completionBlock];
+    } else {
+        [self animateFromView:fromViewController.view
+                                   toView:toViewController.view
+                          inContainerView:containerView
+                          completionBlock:completionBlock];
+    }
 }
 
 #pragma mark - Optional Methods
